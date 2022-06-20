@@ -1,0 +1,17 @@
+.mainContainer {
+    display: flex;
+    marginTop: 20px;
+}
+.labelItemContainer {
+    display: flex;
+}
+.inputItem {
+    margin-right: 5px;
+}
+.labelItem {
+    height: 20px;
+    width: 100px;
+    border: 1px solid black;
+    min-width: 230px;
+    margin-right: 5px;
+}

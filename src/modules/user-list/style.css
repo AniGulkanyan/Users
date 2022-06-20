@@ -1,0 +1,11 @@
+.listContainer {
+    margin-top: 30px;
+}
+.btnsContainer {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+.listItem {
+
+}
