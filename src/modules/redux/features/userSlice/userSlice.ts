@@ -7,11 +7,13 @@ import {endpoint} from "../../../constants";
 export interface UserState {
   users: IUser[] | [],
   checkedCount: number,
+  maxUserCount: number,
 }
 
 const initialState: UserState = {
   users: [],
   checkedCount: 0,
+  maxUserCount: 0,
 };
 
 export const deleteUserById = createAsyncThunk(
@@ -113,7 +115,12 @@ export const userSlice = createSlice({
             state.users = action.payload;
         })
         .addCase(addUser.fulfilled, (state, action) => {
-            state.users = action.payload;
+            if (state.maxUserCount < 10) {
+                state.users = action.payload;
+                state.maxUserCount = state.maxUserCount + 1;
+            } else {
+                alert('Max user creation limit exceeded')
+            }
         })
   },
 });

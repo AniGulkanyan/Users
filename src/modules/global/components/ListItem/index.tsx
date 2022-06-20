@@ -4,13 +4,13 @@ import {IUser} from "../../../user/types";
 
 type Props<T = IUser> = {
     data: T,
-    handleToggleDelete?: any,
+    handleToggleDelete?: (id: string) => void,
     editable?: boolean;
     handleToggleEdit?: (_id: string) => void,
     handleSaveItem?: (user: IUser) => void,
     checked?: boolean,
-    handleOnChange?: any,
-    handleOpenListItem?: any,
+    handleOnChange?: (_id: string, checked: boolean) => void,
+    handleOpenListItem?: (data: any) => void,
 }
 
 export const ListItem = ({
@@ -19,7 +19,7 @@ export const ListItem = ({
      handleSaveItem,
      checked: defaultChecked,
      handleOnChange,
-     handleOpenListItem
+     handleOpenListItem = () => {}
 }: Props) => {
     const [editable, setEditable] = useState(false);
     const [updatedData, setUpdatedData] = useState(data);
@@ -40,13 +40,13 @@ export const ListItem = ({
     return (
         <>
             <div className="mainContainer">
+                {handleOnChange ? <input type="checkbox" id={data._id} checked={checked} onChange={() => {
+                    handleOnChange(data._id as string, !checked);
+                    setChecked(!checked);
+                }}/> : null}
                 <div onClick={() => handleOpenListItem(data)}>
                     {!editable ? (
                             <div className="labelItemContainer">
-                                <input type="checkbox" id={data._id} checked={checked} onChange={() => {
-                                    handleOnChange(data._id, !checked);
-                                    setChecked(!checked);
-                                }}/>
                                 <label className="labelItem" onClick={handleToggleEdit}>{data.name}</label>
                                 <label className="labelItem" onClick={handleToggleEdit}>{data.surname}</label>
                                 <label className="labelItem" onClick={handleToggleEdit}>{data.email}</label>
@@ -54,10 +54,6 @@ export const ListItem = ({
                         ) :
                         (
                             <div className="listItem">
-                                <input type="checkbox" id={data._id} checked={checked} onChange={() => {
-                                    handleOnChange(data._id, !checked);
-                                    setChecked(!checked);
-                                }}/>
                                 <input type="text" className = "inputItem" placeholder={data.name} onChange={(event) => {onChangeHandler(event, 'name')}}/>
                                 <input type="text" className = "inputItem" placeholder={data.surname} onChange={(event) => {onChangeHandler(event, 'surname')}}/>
                                 <input type="text" className = "inputItem" placeholder={data.email} onChange={(event) => {onChangeHandler(event, 'email')}}/>
@@ -65,7 +61,7 @@ export const ListItem = ({
                         )}
                 </div>
 
-                    {handleToggleDelete ? <button onClick={() => {handleToggleDelete(data._id)}}>delete</button> : null}
+                    {handleToggleDelete ? <button onClick={() => {handleToggleDelete(data._id as string)}}>delete</button> : null}
                     {handleSaveItem ? <button onClick={() => {handleSaveItem(updatedData)}}>Save</button> : null}
 
             </div>

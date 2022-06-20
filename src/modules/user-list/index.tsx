@@ -2,7 +2,14 @@ import './style.css';
 import React, {useEffect, lazy, Suspense, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
-import {deleteUserById, getUsers, editUser, checkUser, loadUser, addUser} from "../redux/features/userSlice/userSlice";
+import {
+    deleteUserById,
+    getUsers,
+    editUser,
+    checkUser,
+    loadUser,
+    addUser
+} from "../redux/features/userSlice/userSlice";
 import {IUser} from "../user/types";
 import {ListItem} from "../global/components/ListItem";
 const List = lazy(() => import('../global/components/List'));
@@ -21,7 +28,7 @@ export const UserList = () => {
 
         fetchData()
             .catch((error) => {
-                console.log('error', error)
+               alert(error?.message)
             })
     }, [dispatch]);
 
@@ -30,7 +37,6 @@ export const UserList = () => {
     }
 
     function handleSaveItem(user: IUser) {
-        console.log('hereeee')
         dispatch(editUser(user));
     }
 
