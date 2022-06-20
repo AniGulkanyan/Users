@@ -3,9 +3,13 @@
 }
 .btnsContainer {
     display: flex;
-    justify-content: space-around;
+    justify-content: start;
     align-content: center;
+    margin-top: 30px;
+    margin-left: 20px;
 }
-.listItem {
-
+.btnItem {
+    margin-right: 10px;
+    width: 150px;
+    height: 30px;
 }

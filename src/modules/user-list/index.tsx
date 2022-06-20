@@ -73,8 +73,8 @@ export const UserList = () => {
     return (
         <>
             <div className="btnsContainer">
-                <button onClick={goBack}>Go back</button>
-                <button onClick={handleAdd}>Add User</button>
+                <button onClick={goBack} className="btnItem">Go back</button>
+                <button onClick={handleAdd} className="btnItem">Add User</button>
             </div>
 
             <div className="listContainer">

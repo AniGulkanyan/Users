@@ -61,8 +61,8 @@ export const ListItem = ({
                         )}
                 </div>
 
-                    {handleToggleDelete ? <button onClick={() => {handleToggleDelete(data._id as string)}}>delete</button> : null}
-                    {handleSaveItem ? <button onClick={() => {handleSaveItem(updatedData)}}>Save</button> : null}
+                    {handleToggleDelete ? <button onClick={() => {handleToggleDelete(data._id as string)}} className="btnItem">delete</button> : null}
+                    {handleSaveItem ? <button onClick={() => {handleSaveItem(updatedData)}} className="btnItem">Save</button> : null}
 
             </div>
         </>

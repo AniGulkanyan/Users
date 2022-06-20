@@ -3,6 +3,7 @@ import {useNavigate, useLocation} from "react-router-dom";
 import {deleteUserById, editUser} from "../redux/features/userSlice/userSlice";
 import React from "react";
 import {ListItem} from "../global/components/ListItem";
+import './style.css';
 
 export const User = () => {
     const dispatch = useAppDispatch();
@@ -25,12 +26,14 @@ export const User = () => {
 
     return (
         <>
-            <button onClick={goBack}>Go back</button>
-            <ListItem
-                data={data as any}
-                handleToggleDelete={handleToggleDelete}
-                handleSaveItem={handleSaveItem}
-            />
+            <button onClick={goBack} className="backBtn">Go back</button>
+            <div className="listItemWrapper">
+                <ListItem
+                    data={data as any}
+                    handleToggleDelete={handleToggleDelete}
+                    handleSaveItem={handleSaveItem}
+                />
+            </div>
         </>
     )
 }
