@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 import {IUser} from "../../../user/types";
 import {makeApiCall} from "../../../global/services/api";
-import {endpoint} from "../../../constants";
+import {endpoint} from "../../../global/constants";
 
 export interface UserState {
   users: IUser[] | [],
